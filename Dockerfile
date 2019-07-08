@@ -1,14 +1,10 @@
-FROM ruby:2.6.1-slim
-
-RUN apt-get update && \
-    apt-get install -y build-essential libcurl4-openssl-dev libxml2-dev libsqlite3-dev libpq-dev nodejs postgresql-client sqlite3 --no-install-recommends && \ 
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-
-
-# throw errors if Gemfile has been modified since Gemfile.lock
-RUN bundle config --global frozen 1
-
+FROM ruby:2.3.1
+RUN apt-get update && apt-get upgrade -y
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install -y git nodejs sqlite3 libsqlite3-dev yarn
+RUN gem install bundler
 
 ENV APP_PATH /usr/src/app
 
