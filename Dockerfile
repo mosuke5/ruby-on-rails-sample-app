@@ -1,4 +1,6 @@
 FROM ruby:2.3.1
+RUN echo "deb http://deb.debian.org/debian jessie main" > /etc/apt/sources.list &&\
+    echo "deb http://security.debian.org jessie/updates main" >> /etc/apt/sources.list
 RUN apt-get update && apt-get upgrade -y
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
