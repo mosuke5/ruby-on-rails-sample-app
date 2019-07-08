@@ -1,4 +1,4 @@
-FROM ruby:2.3.1-slim
+FROM ruby:2.6.1-slim
 
 RUN apt-get update && \
     apt-get install -y build-essential libcurl4-openssl-dev libxml2-dev libsqlite3-dev libpq-dev nodejs postgresql-client sqlite3 --no-install-recommends && \ 
